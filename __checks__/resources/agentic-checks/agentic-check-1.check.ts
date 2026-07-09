@@ -4,6 +4,7 @@ new AgenticCheck('agentic-check-1-xVljxRVT', {
   name: 'Agentic Check #1',
   prompt: 'test',
   activated: false,
+  muted: false,
   locations: [
     'us-east-1',
   ],
