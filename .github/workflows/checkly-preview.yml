@@ -1,0 +1,39 @@
+# Checkly preview workflow
+# Runs Checkly checks against pull request preview URLs and reports results back to the PR.
+# To switch this workflow to your platform's dynamic preview URL later, set PREVIEW_URL
+# as a repository variable and replace ENVIRONMENT_URL below with ${{ vars.PREVIEW_URL }}.
+name: Checkly Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  checkly:
+    name: Run Checkly checks
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
+    env:
+      CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
+      CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
+      ENVIRONMENT_URL: https://app.checklyhq.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Checkly
+        run: npx checkly test --record --reporter=github --env ENVIRONMENT_URL=${{ env.ENVIRONMENT_URL }}
