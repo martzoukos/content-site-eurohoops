@@ -27,6 +27,8 @@ new UrlMonitor('checklyhq-com-is-online-EEBf4Rj2', {
   request: {
     url: 'https://checklyhq.com',
     ipFamily: 'IPv4',
+    followRedirects: true,
+    skipSSL: false,
     assertions: [
       UrlAssertionBuilder.statusCode().equals(200),
     ],
