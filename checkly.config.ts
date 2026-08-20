@@ -1,11 +1,11 @@
 import { defineConfig } from 'checkly'
 
-export default defineConfig({
-  projectName: 'checklyhq.com monitoring',
-  logicalId: 'checklyhq-com-monitoring',
+const config = defineConfig({
+  projectName: 'content-site-eurohoops',
+  logicalId: 'content-site-eurohoops',
   checks: {
-    locations: ['us-east-1', 'eu-west-1'],
-    checkMatch: '**/*.check.ts',
-    browserChecks: { testMatch: '**/*.spec.ts' },
+    checkMatch: '__checks__/**/*.check.ts',
   },
 })
+
+export default config
