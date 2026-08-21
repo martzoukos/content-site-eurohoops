@@ -7,7 +7,7 @@
 import { MultiStepCheck, Frequency, RetryStrategyBuilder } from 'checkly/constructs'
 
 new MultiStepCheck('www-acme-com-availability-and-tls-expiry', {
-  name: 'www.acme.com availability and TLS expiry',
+  name: 'www.acme.com availability and TLS expirya',
   activated: true,
   muted: false,
   shouldFail: false,
