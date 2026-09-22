@@ -27,7 +27,6 @@ new ApiCheck('missing-source-13', {
     queryParameters: [],
     skipSSL: false,
     followRedirects: true,
-    maxHops: 30,
     assertions: [],
   },
   retryStrategy: RetryStrategyBuilder.fixedStrategy({
